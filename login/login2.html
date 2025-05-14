@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面 - 经典卡片</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            background-color: #f0f2f5; /* 淡雅背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px 30px 40px; /* 上下内边距调整 */
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 380px;
+            /* text-align: center; (不再需要全局居中) */
+        }
+
+        .login-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        .login-tabs .tab-item {
+            flex: 1;
+            padding: 10px 15px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+            color: #555;
+            border-bottom: 3px solid transparent;
+            transition: color 0.3s, border-color 0.3s;
+            font-weight: 500;
+        }
+        .login-tabs .tab-item.active {
+            color: #007bff; /* 品牌主色 */
+            border-bottom-color: #007bff;
+        }
+        .login-tabs .tab-item:not(.active):hover {
+            color: #007bff;
+        }
+
+        .tab-content {
+            display: none;/* 默认情况下，所有内容面板都是隐藏的 */
+        }
+        .tab-content.active { /* 当内容面板拥有 active 类时，它会显示出来 */
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+            position: relative; /* 为了“忘记密码”链接定位 */
+        }
+        /* 移除全局label样式，因为图片中label在placeholder里 */
+        .input-group input[type="text"],
+        .input-group input[type="password"],
+        .input-group input[type="tel"] {
+            width: 100%; /* 输入框占满可用宽度 */
+            padding: 12px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 15px; /* 稍小字体 */
+            box-sizing: border-box; /* padding和border不增加宽度 */
+            transition: border-color 0.3s;
+        }
+        /* 当有右侧元素时，调整输入框宽度 */
+        .input-group.has-aside input {
+            padding-right: 90px; /* 为右侧按钮/链接留出空间 */
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #007bff; /* 品牌主色 */
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        .input-aside {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 13px;
+        }
+        .input-aside a,
+        .input-aside .btn-get-code {
+            color: #007bff;
+            text-decoration: none;
+            background: none;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .input-aside a:hover,
+        .input-aside .btn-get-code:hover {
+            text-decoration: underline;
+        }
+        .input-aside .btn-get-code {
+            font-weight: normal;
+            font-size: 13px;
+        }
+        .input-aside .btn-get-code:disabled {
+            color: #999;
+            cursor: not-allowed;
+            text-decoration: none;
+        }
+
+
+        .options-group {
+            display: flex;
+            justify-content: space-between; /* 使“记住我”靠左 */
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .options-group .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        .options-group .remember-me input[type="checkbox"] {
+            margin-right: 6px;
+            accent-color: #007bff; /* 品牌主色 */
+        }
+        .options-group .remember-me label {
+            color: #555;
+            font-size: 14px;
+        }
+        /* 忘记密码链接现在在输入框旁边，这里不再需要 */
+        /* .options-group a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .options-group a:hover {
+            text-decoration: underline;
+        } */
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff; /* 品牌主色 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        .btn-login:hover {
+            background-color: #0056b3; /* 主色加深 */
+        }
+
+        .links { /* 页脚的注册链接 */
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-tabs">
+            <div class="tab-item active" data-tab="password">密码登录</div>
+            <div class="tab-item" data-tab="sms">短信登录</div>
+        </div>
+
+        <div id="password-login-form" class="tab-content active">
+            <form>
+                <div class="input-group has-aside">
+                    <input type="text" id="username" name="username" placeholder="登录用户名 / 邮箱" required>
+                    <div class="input-aside">
+                        <a href="#">忘记用户名?</a>
+                    </div>
+                </div>
+                <div class="input-group has-aside">
+                    <input type="password" id="password" name="password" placeholder="密码" required>
+                    <div class="input-aside">
+                        <a href="#">忘记密码?</a>
+                    </div>
+                </div>
+                <div class="options-group">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">记住我</label>
+                    </div>
+                    <!-- 忘记密码链接已移到输入框旁 -->
+                </div>
+                <button type="submit" class="btn-login">登 录</button>
+            </form>
+        </div>
+
+        <div id="sms-login-form" class="tab-content">
+            <form>
+                <div class="input-group">
+                    <input type="tel" id="phone" name="phone" placeholder="请输入手机号" required pattern="[0-9]{11}">
+                </div>
+                <div class="input-group has-aside">
+                    <input type="text" id="sms_code" name="sms_code" placeholder="请输入短信验证码" required>
+                    <div class="input-aside">
+                        <button type="button" class="btn-get-code" id="btnGetSmsCode">获取验证码</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn-login">登 录</button>
+            </form>
+        </div>
+
+        <div class="links">
+             <a href="register.html">注册新账户</a> <!-- 假设您的注册页面是 register.html -->
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.login-tabs .tab-item');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const btnGetSmsCode = document.getElementById('btnGetSmsCode');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有tab的active类
+                tabs.forEach(item => item.classList.remove('active'));
+                // 给当前点击的tab添加active类
+                tab.classList.add('active');
+
+                // 隐藏所有tab content
+                tabContents.forEach(content => content.classList.remove('active'));
+                // 显示对应的tab content
+                const targetTabContentId = tab.getAttribute('data-tab') + '-login-form';
+                document.getElementById(targetTabContentId).classList.add('active');
+            });
+        });
+
+        if (btnGetSmsCode) {
+            btnGetSmsCode.addEventListener('click', function() {
+                // 在这里添加获取验证码的逻辑
+                // 例如：发送请求到后端，然后开始倒计时
+                this.disabled = true;
+                this.textContent = '发送中...';
+                let countdown = 60;
+                // 模拟发送成功
+                setTimeout(() => {
+                    this.textContent = countdown + 's后重试';
+                    const interval = setInterval(() => {
+                        countdown--;
+                        if (countdown > 0) {
+                            this.textContent = countdown + 's后重试';
+                        } else {
+                            clearInterval(interval);
+                            this.textContent = '获取验证码';
+                            this.disabled = false;
+                        }
+                    }, 1000);
+                }, 1000); // 模拟网络延迟
+            });
+        }
+    </script>
+</body>
+</html>

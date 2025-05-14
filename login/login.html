@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面 - 经典卡片</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            background-color: #f0f2f5; /* 淡雅背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+        .login-container img.logo {
+            width: 100px; /* 根据你的logo调整 */
+            margin-bottom: 20px;
+        }
+        .login-container h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 24px;
+            font-weight: 500;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+        .input-group input {
+            width: calc(100% - 22px); /* 减去padding */
+            padding: 12px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #007bff; /* 品牌主色 */
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff; /* 品牌主色 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        .btn-login:hover {
+            background-color: #0056b3; /* 主色加深 */
+        }
+        .links {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+        .social-login {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .social-login p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            /* 在这里添加社交图标样式, 例如使用FontAwesome或SVG */
+            display: inline-block;
+            width: 30px; height: 30px; background: #eee; border-radius: 50%;
+            line-height:30px; color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- <img src="your-logo.png" alt="Logo" class="logo"> -->
+        <h2>欢迎回来</h2>
+        
+        <form>
+            <div class="input-group">
+                <label for="username">账号</label>
+                <input type="text" id="username" name="username" placeholder="请输入您的邮箱或手机号" required>
+            </div>
+            <div class="input-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" placeholder="请输入您的密码" required>
+            </div>
+            <button type="submit" class="btn-login">登 录</button>
+        </form>
+        <div class="links">
+            <a href="#">忘记密码?</a> | <a href="./register.html">注册新账户</a>
+        </div>
+        <div class="social-login">
+            <p>或使用以下方式登录</p>
+            <div class="social-icons">
+                <!-- 示例图标，实际项目中建议用SVG或字体图标 -->
+                <a href="#" title="微信登录">
+                 <img src="#" alt="微信登录">
+                </a>
+                <a href="#" title="QQ登录">
+                    <img src="#" alt="QQ登录">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
