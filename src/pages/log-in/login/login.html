@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面 - 经典卡片</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- <img src="your-logo.png" alt="Logo" class="logo"> -->
+        <h2>欢迎回来</h2>
+
+        <div class="login-tabs">
+            <div class="tab-item active" data-tab="password">密码登录</div>
+            <div class="tab-item" data-tab="sms">短信登录</div>
+        </div>
+
+        <!-- 密码登录表单 -->
+        <div id="password-login-form" class="tab-content active">
+            <form id="password-form">
+                <div class="input-group has-aside">
+                    <input type="text" id="username" name="username" placeholder="登录手机号">
+                    <div class="error-message" id="username-error"></div>
+                </div>
+                <div class="input-group has-aside">
+                    <input type="password" id="password" name="password" placeholder="密码">
+                    <div class="error-message" id="password-error"></div>
+                    <div class="input-aside">
+                        <a href="./password.html">忘记密码?</a>
+                    </div>
+                </div>
+                <div class="options-group">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">记住我</label>
+                    </div>
+                </div>
+                <button type="submit" class="login-button">登 录</button>
+            </form>
+        </div>
+        <!-- 短信登录表单 -->
+        <div id="sms-login-form" class="tab-content">
+            <form id="sms-form">
+                <div class="input-group">
+                    <input type="tel" id="phone" name="phone" placeholder="请输入手机号">
+                    <div class="error-message" id="phone-error"></div>
+                </div>
+                <div class="input-group has-aside">
+                    <input type="text" id="sms_code" name="sms_code" placeholder="请输入短信验证码">
+                    <div class="error-message" id="sms_code-error"></div>
+                    <div class="input-aside">
+                        <button type="button" class="btn-get-code" id="btnGetSmsCode">获取验证码</button>
+                    </div>
+                </div>
+                <button type="submit" class="login-button">登 录</button>
+            </form>
+        </div>
+
+        <div class="links">
+            <a href="./register.html">注册新账户</a>
+        </div>
+
+        <div class="social-login">
+            <p>或使用以下方式登录</p>
+            <div class="social-icons">
+                <a href="#" title="微信登录">
+                    <img src="../../../assets/images/login/icon64_appwx_logo.png" alt="微信登录"> <!-- 替换为你的微信图标路径 -->
+                </a>
+                <!--
+                TODO:暂时不实现QQ快捷登录
+                <a href="#" title="QQ登录">
+                    <img src="path/to/your/qq-icon.png" alt="QQ登录">   替换为你的QQ图标路径
+                       </a> 
+               -->
+                <!-- 可以添加更多社交图标 -->
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./login.js"></script>
+</body>
+
+</html>

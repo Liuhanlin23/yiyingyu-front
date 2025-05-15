@@ -1,5 +1,14 @@
 {
+  "name": "yiyingyu-front",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
   "dependencies": {
     "axios": "^1.9.0"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
   }
 }
