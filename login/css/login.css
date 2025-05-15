@@ -1,0 +1,221 @@
+body {
+    margin: 0;
+    font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    background-color: #f0f2f5; /* 淡雅背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    padding: 20px 0; /* 避免内容粘在屏幕边缘 */
+}
+.login-container {
+    background-color: #ffffff;
+    padding: 30px 30px 40px; /* 上下内边距调整以适应标签页 */
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 380px;
+    /* text-align: center; 不再需要全局居中，由内部元素自行控制 */
+}
+.login-container img.logo { /* 如果你决定用logo，这是logo的样式 */
+    display: block; /* 使logo居中 */
+    margin: 0 auto 20px; /* 上下边距和左右自动居中 */
+    width: 100px;
+}
+.login-container h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center; /* 标题居中 */
+}
+
+/* --- 标签页样式 --- */
+.login-tabs {
+    display: flex;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+.login-tabs .tab-item {
+    flex: 1;
+    padding: 10px 15px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+    font-weight: 500;
+}
+.login-tabs .tab-item.active {
+    color: #007bff; /* 品牌主色 */
+    border-bottom-color: #007bff;
+}
+.login-tabs .tab-item:not(.active):hover {
+    color: #007bff;
+}
+
+/* --- 标签页内容面板样式 --- */
+.tab-content {
+    display: none; /* 默认隐藏 */
+}
+.tab-content.active {
+    display: block; /* 活动时显示 */
+}
+
+/* --- 输入框组样式 --- */
+.input-group {
+    margin-bottom: 18px;
+    position: relative; /* 为了“忘记密码”等链接定位 */
+    text-align: left; /* 确保内部元素左对齐 */
+}
+/* 针对图片中没有显式label，而是用placeholder的情况 */
+/* .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+} */
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="tel"] {
+    width: 100%; /* 输入框占满可用宽度 */
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px; /* 稍小字体 */
+    box-sizing: border-box; /* padding和border不增加宽度 */
+    transition: border-color 0.3s;
+}
+/* 当有右侧元素时，调整输入框内边距 */
+.input-group.has-aside input {
+    padding-right: 90px; /* 为右侧按钮/链接留出空间，根据实际内容调整 */
+}
+.input-group input:focus {
+    outline: none;
+    border-color: #007bff; /* 品牌主色 */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* --- 输入框右侧附加内容样式 --- */
+.input-aside {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+}
+.input-aside a,
+.input-aside .btn-get-code {
+    color: #007bff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 5px 0; /* 调整padding避免过于紧凑 */
+    cursor: pointer;
+}
+.input-aside a:hover,
+.input-aside .btn-get-code:hover {
+    text-decoration: underline;
+}
+.input-aside .btn-get-code { /* 获取验证码按钮的特定样式 */
+    font-weight: normal;
+    font-size: 13px;
+}
+.input-aside .btn-get-code:disabled {
+    color: #999;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+/* --- 选项组（如记住我）样式 --- */
+.options-group {
+    display: flex;
+    justify-content: space-between; /* 元素两端对齐 */
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+    text-align: left; /* 确保内部元素左对齐 */
+}
+.options-group .remember-me {
+    display: flex;
+    align-items: center;
+}
+.options-group .remember-me input[type="checkbox"] {
+    margin-right: 6px;
+    accent-color: #007bff; /* 品牌主色 */
+    vertical-align: middle; /* 改善对齐 */
+}
+.options-group .remember-me label {
+    color: #555;
+    font-size: 14px;
+}
+
+/* --- 登录按钮样式 --- */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff; /* 品牌主色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+}
+.btn-login:hover {
+    background-color: #0056b3; /* 主色加深 */
+}
+
+/* --- 底部链接样式 (忘记密码/注册) --- */
+.links {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center; /* 链接居中 */
+}
+.links a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 8px;
+}
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* --- 社交登录样式 --- */
+.social-login {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: center; /* 内容居中 */
+}
+.social-login p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+.social-icons a {
+    margin: 0 10px;
+    display: inline-block;
+    /* 示例：使用文字代替图片，实际应使用图片或SVG */
+}
+.social-icons a img { /* 如果使用图片 */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+    /* 添加错误提示样式 */
+    .error-message {
+        color: #ff4d4f;
+        font-size: 12px;
+        margin-top: 4px;
+        display: none;
+    }
+    
+    .input-group.error input {
+        border-color: #ff4d4f;
+    }
